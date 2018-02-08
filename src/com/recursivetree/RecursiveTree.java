@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 
 public class RecursiveTree extends JComponent {
-	private float x1;
-	private float y1;
+    private float x1;
+    private float y1;
     private float lineLength;
     private int depth;
     private double angle = 90.0;
@@ -15,14 +15,14 @@ public class RecursiveTree extends JComponent {
 		this.x1 = x1;
 		this.y1 = y1;
 		this.lineLength = lineLength;
-	    this.depth = depth;
+		this.depth = depth;
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	    super.paintComponent(g);
 
-		Graphics2D g2 = (Graphics2D) g;
+	    Graphics2D g2 = (Graphics2D) g;
         Line2D.Float root = branch(x1, y1, angle);
         g2.draw(root);
 
@@ -43,9 +43,9 @@ public class RecursiveTree extends JComponent {
     }
 
 	private Line2D.Float branch(float x1, float y1, double angle){
-        float x2 = (int) (x1 + Math.cos(Math.toRadians(angle)) * lineLength);
-        float y2 = (int) (y1 - Math.sin(Math.toRadians(angle)) * lineLength);
+	    float x2 = (int) (x1 + Math.cos(Math.toRadians(angle)) * lineLength);
+	    float y2 = (int) (y1 - Math.sin(Math.toRadians(angle)) * lineLength);
 
-        return new Line2D.Float(x1, y1, x2, y2);
+	    return new Line2D.Float(x1, y1, x2, y2);
     }
 }
