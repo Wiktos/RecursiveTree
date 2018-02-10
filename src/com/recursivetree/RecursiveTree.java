@@ -6,7 +6,7 @@ import java.awt.geom.Line2D;
 
 public class RecursiveTree extends JComponent {
     private final float x1;
-    private final float y1;
+	private final float y1;
     private final float lineLength;
     private final int depth;
 
@@ -17,6 +17,13 @@ public class RecursiveTree extends JComponent {
 		this.depth = depth;
 	}
 
+	public RecursiveTree(DrawControlPanel panel){
+		x1 = (int) panel.getXSpinner().getValue();
+		y1 = (int) panel.getYSpinner().getValue();
+		lineLength = (int) panel.getLineLengthSpinner().getValue();
+		depth = (int) panel.getDepthSpinner().getValue();
+	}
+
 	@Override
 	public void paintComponent(Graphics g) {
 	    super.paintComponent(g);
@@ -25,7 +32,7 @@ public class RecursiveTree extends JComponent {
 	    Line2D.Float root = branch(x1, y1, 90.0);
 	    g2.draw(root);
 
-        drawTree(g2, (int)root.x2, (int)root.y2, 90.0, lineLength, depth);
+        drawTree(g2, root.x2, root.y2, 90.0, lineLength, depth);
 	}
 
 	private void drawTree(Graphics2D g2, float x1, float y1, double angle, float lineLength, int depth){
