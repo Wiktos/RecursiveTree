@@ -29,7 +29,7 @@ public class Main {
         components[1].setBounds(10, 20, 300, 200);
     }
 
-	private static void addChangeListeners(AppWindow window, DrawControlPanel controlPanel, AtomicReference<RecursiveTree> tree){
+	private static void addChangeListeners(AppWindow window, ControlPanel controlPanel, AtomicReference<RecursiveTree> tree){
 		controlPanel.getXSpinner().addChangeListener(new SpinnerChangeListener(window, controlPanel, tree));
 		controlPanel.getYSpinner().addChangeListener(new SpinnerChangeListener(window, controlPanel, tree));
 		controlPanel.getLineLengthSpinner().addChangeListener(new SpinnerChangeListener(window, controlPanel, tree));

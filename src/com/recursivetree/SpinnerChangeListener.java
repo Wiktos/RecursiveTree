@@ -1,17 +1,16 @@
 package com.recursivetree;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.event.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class SpinnerChangeListener implements ChangeListener {
 
     private JFrame window;
-    private DrawControlPanel controlPanel;
+    private ControlPanel controlPanel;
     private AtomicReference<RecursiveTree> tree;
 
-    public SpinnerChangeListener(JFrame window, DrawControlPanel panel, AtomicReference<RecursiveTree> tree){
+    public SpinnerChangeListener(JFrame window, ControlPanel panel, AtomicReference<RecursiveTree> tree){
         this.window = window;
         controlPanel = panel;
         this.tree = tree;
@@ -19,7 +18,7 @@ public class SpinnerChangeListener implements ChangeListener {
 
     @Override
     public void stateChanged(ChangeEvent e) {
-        if(!checkSpinnerCurrValues())
+        if(!areSpinnerCurrValuesValid())
             return;
 
         window.remove(tree.get());
@@ -30,7 +29,7 @@ public class SpinnerChangeListener implements ChangeListener {
         window.repaint();
     }
 
-    private boolean checkSpinnerCurrValues(){
+    private boolean areSpinnerCurrValuesValid(){
         return checkXValueCorrectness() &&
                 checkYValueCorrectness() &&
                 checkLineLenValueCorrectness() &&

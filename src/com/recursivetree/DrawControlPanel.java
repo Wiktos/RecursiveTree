@@ -2,8 +2,9 @@ package com.recursivetree;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.atomic.AtomicReference;
 
-public class DrawControlPanel extends JPanel {
+public class DrawControlPanel extends JPanel implements ControlPanel{
 
     private final JLabel xLb;
     private final JLabel yLb;
@@ -44,29 +45,17 @@ public class DrawControlPanel extends JPanel {
     }
 
     private void initSpinners(){
-        xSpinner = new JSpinner();
-        xSpinner.setEditor(new JSpinner.DefaultEditor(xSpinner));
-        JSpinner.DefaultEditor xDefaultEditor = (JSpinner.DefaultEditor) xSpinner.getEditor();
-        xDefaultEditor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
-        xSpinner.setValue(700);
+        initSingleSpinner(new AtomicReference<>(xSpinner = new JSpinner()), 700);
+        initSingleSpinner(new AtomicReference<>(ySpinner = new JSpinner()), 650);
+        initSingleSpinner(new AtomicReference<>(lineLengthSpinner = new JSpinner()), 50);
+        initSingleSpinner(new AtomicReference<>(depthSpinner = new JSpinner()), 10);
+    }
 
-        ySpinner = new JSpinner();
-        ySpinner.setEditor(new JSpinner.DefaultEditor(ySpinner));
-        JSpinner.DefaultEditor yDefaultEditor = (JSpinner.DefaultEditor) ySpinner.getEditor();
-        yDefaultEditor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
-        ySpinner.setValue(650);
-
-        lineLengthSpinner = new JSpinner();
-        lineLengthSpinner.setEditor(new JSpinner.DefaultEditor(lineLengthSpinner));
-        JSpinner.DefaultEditor lineLenDefaultEditor = (JSpinner.DefaultEditor) lineLengthSpinner.getEditor();
-        lineLenDefaultEditor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
-        lineLengthSpinner.setValue(50);
-
-        depthSpinner = new JSpinner();
-        depthSpinner.setEditor(new JSpinner.DefaultEditor(depthSpinner));
-        JSpinner.DefaultEditor defaultEditor = (JSpinner.DefaultEditor) depthSpinner.getEditor();
+    private void initSingleSpinner(AtomicReference<JSpinner> spinner, int value){
+        spinner.get().setEditor(new JSpinner.DefaultEditor(spinner.get()));
+        JSpinner.DefaultEditor defaultEditor = (JSpinner.DefaultEditor) spinner.get().getEditor();
         defaultEditor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
-        depthSpinner.setValue(10);
+        spinner.get().setValue(value);
     }
 
     private void addComponents(){

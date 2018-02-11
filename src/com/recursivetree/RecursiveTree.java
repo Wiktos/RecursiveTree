@@ -17,7 +17,7 @@ public class RecursiveTree extends JComponent {
 		this.depth = depth;
 	}
 
-	public RecursiveTree(DrawControlPanel panel){
+	public RecursiveTree(ControlPanel panel){
 		x1 = (int) panel.getXSpinner().getValue();
 		y1 = (int) panel.getYSpinner().getValue();
 		lineLength = (int) panel.getLineLengthSpinner().getValue();
